@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Theme Clock</title>
+</head>
+
+<body>
+  <!-- <button class="mode-toggle-btn">Dark mode</button> -->
+  <div class="theme-switch" title="Toggle Dark/Light Theme ">
+    <input class="slider" id="slider" type="checkbox"></input>
+    <label class="label" for="slider">
+      <img class="sun-moon" src="https://img.icons8.com/emoji/48/000000/sun-with-face.png" alt="sun" />
+      <img class="sun-moon" src="https://img.icons8.com/plasticine/50/000000/crescent-moon.png" alt="moon" />
+      <div class="toggler-btn"></div>
+    </label>
+  </div>
+
+  <div class="clock-container">
+    <div class="clock">
+      <div class="needle hours"></div>
+      <div class="needle minutes"></div>
+      <div class="needle seconds"></div>
+      <div class="center-point"></div>
+    </div>
+
+    <div class="time">12:00</div>
+    <div class="date">6 April 2021</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
