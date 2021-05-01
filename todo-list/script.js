@@ -2,7 +2,9 @@ const form = document.getElementById("form");
 const input = document.getElementById("input");
 const todosUl = document.getElementById("todos");
 const deleteTodo = document.querySelectorAll("fa-trash");
+const toasts = document.getElementById("toasts");
 
+welcomeNotification();
 let todosFromLs = JSON.parse(localStorage.getItem("todos"));
 
 if (todosFromLs) {
@@ -28,19 +30,17 @@ function addTodo(todo) {
       todosEl.classList.add("completed");
     }
 
-    todosEl.innerHTML = `${todoItem}<i class="fa fa-trash" aria-hidden="true"></i>`;
+    todosEl.innerHTML = `${todoItem}<i class="fa fa-trash" onclick="delTodo(event)" aria-hidden="true"></i>`;
 
     todosEl.addEventListener("dblclick", () => {
       todosEl.classList.toggle("completed");
+      createNotification("Todo Completed", "Info");
       updateLocalStorage();
     });
 
     todosUl.appendChild(todosEl);
+    createNotification("Todo Addeded", "success");
     updateLocalStorage();
-    todosEl.addEventListener("contextmenu", () => {
-      todosEl.remove();
-      updateLocalStorage();
-    });
   }
 }
 
@@ -55,4 +55,39 @@ function updateLocalStorage() {
     });
   });
   localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function delTodo(event) {
+  let todoEl = event.target.parentNode;
+  todoEl.remove();
+  createNotification("Todo Deleted", "success");
+  updateLocalStorage();
+}
+
+function welcomeNotification() {
+  const notify = document.createElement("div");
+  notify.classList.add("toast");
+  notify.classList.add("info");
+
+  notify.innerText = "Welcome Back";
+
+  toasts.appendChild(notify);
+
+  setTimeout(() => {
+    notify.remove();
+  }, 2000);
+}
+
+function createNotification(message, type) {
+  const notify = document.createElement("div");
+  notify.classList.add("toast");
+  notify.classList.add(type);
+
+  notify.innerText = message;
+
+  toasts.appendChild(notify);
+
+  setTimeout(() => {
+    notify.remove();
+  }, 2000);
 }

@@ -37,6 +37,8 @@ form {
   color: #444;
   font-size: 2rem;
   padding: 1rem 2rem;
+  margin-bottom: 10px;
+  border-radius: 7px;
   display: block;
   width: 100%;
 }
@@ -62,35 +64,66 @@ form {
   cursor: pointer;
   font-size: 1.5rem;
   padding: 1rem 2rem;
+  z-index: 0;
 }
 
- .todos li.completed {
+.todos li.completed {
   color: #b6b6b6;
   text-decoration: line-through;
+  z-index: 1;
+}
+
+.todos li.completed::after {
+  content: "\2713";
+  color: green;
+  z-index: 2;
 }
 .todos li.completed .fa-trash {
   color: red;
-
 }
 
-.done{
+.done {
   margin: 0;
   color: green;
 }
 
-.fa-trash{
+.fa-trash {
   color: red;
   position: absolute;
   margin: 2px;
   right: 7px;
-  transition: transform .2s;
+  transition: transform 0.2s;
 }
-.tick{
+.tick {
   margin-right: 2px;
 }
 
-.fa-trash:hover{
-transform: scale(1.3);
+.fa-trash:hover {
+  transform: scale(1.3);
 }
 
+#toasts {
+  position: fixed;
+  display: flex;
+  top: 25px;
+  flex-direction: column;
+}
 
+.toast {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  margin: 0.5rem;
+}
+
+.toast.info {
+  color: rebeccapurple;
+}
+
+.toast.success {
+  color: green;
+}
+
+.toast.error {
+  color: red;
+}
